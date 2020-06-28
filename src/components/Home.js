@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import {
+  SEARCH_BASE_URL,
+  POPULAR_BASE_URL,
   POSTER_SIZE,
   BACKDROP_SIZE,
-  IMAGE_BASE_URL,
-  SEARCH_BASE_URL,
-  POPULAR_BASE_URL
+  IMAGE_BASE_URL
+  
 } from '../config';
 
 import HeroImage from './elements/HeroImage';
@@ -19,6 +20,7 @@ import { useHomeFetch } from './hooks/useHomeFetch';
 import NoImage from './images/no_image.jpg';
 
 const Home = () => {
+  const [searchTerm, setSearchTerm] = useState('');
     const [
       { 
         state: { movies, currentPage,  totalPages, heroImage}, 
@@ -26,8 +28,8 @@ const Home = () => {
         error
       }, 
       fetchMovies
-    ] = useHomeFetch();
-    const [searchTerm, setSearchTerm] = useState('');
+    ] = useHomeFetch(searchTerm);
+ 
 
     const searchMovies = search => {
       const endpoint = search ? SEARCH_BASE_URL + search: POPULAR_BASE_URL;
@@ -46,15 +48,15 @@ const Home = () => {
     }
     
     if (error) return <div>Oops! Something went wrong...</div>
-    if(!heroImage[0]) return <Spinner/>
+    if(!movies[0]) return <Spinner/>
  
     return (
     <React.Fragment>
       { !searchTerm && (
         <HeroImage 
-        image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${heroImage.backdrop_path}`}
-        title={heroImage.original_title}
-        text={heroImage.overview}
+        image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${movies.backdrop_path}`}
+        title={movies.original_title}
+        text={movies.overview}
         />
       )}
         <SearchBar callback={searchMovies}/>
