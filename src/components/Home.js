@@ -54,9 +54,9 @@ const Home = () => {
     <React.Fragment>
       { !searchTerm && (
         <HeroImage 
-        image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${movies.backdrop_path}`}
-        title={movies.original_title}
-        text={movies.overview}
+        image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${heroImage.backdrop_path}`}
+        title={heroImage.original_title}
+        text={heroImage.overview}
         />
       )}
         <SearchBar callback={searchMovies}/>
