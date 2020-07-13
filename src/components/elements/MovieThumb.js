@@ -3,10 +3,10 @@ import { Link } from '@reach/router';
 
 import { StyledMovieThumb } from '../styles/StyledMovieThumb';
 
-const MovieThumb = ({ image, moviedId, clickable }) => (
+const MovieThumb = ({ image, movieId, clickable }) => (
 <StyledMovieThumb>
     {clickable ? (
-    <Link to={`/${moviedId}`}>
+    <Link to={`/${movieId}`}>
      <img className="clickable" src={image} alt="moviethumb" />
      </Link>
     ) : (
