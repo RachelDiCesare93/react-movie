@@ -20,6 +20,6 @@ const Header = () => (
     <StyledTMDBLogo src={TMDBLogo} alt="tmdb-logo"/>
     </div>
  </StyledHeader>
-)
+);
 
 export default Header;
